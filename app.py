@@ -936,7 +936,12 @@ else:
 st.markdown(
     """
     <div class="footer">
-        QuimIA © 2026 | Plataforma educacional com inteligência artificial
+        <strong>QuimIA © 2026</strong><br>
+        Plataforma educacional com inteligência artificial.<br><br>
+
+        Desenvolvido por:<br>
+        Felipe dos Santos Araújo • Ana Caroline Araújo Duarte da Silva •
+        André Holanda Nascimento • Nicanor Tiago Bueno Antunes
     </div>
     """,
     unsafe_allow_html=True,
