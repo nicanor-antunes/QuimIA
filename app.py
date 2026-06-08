@@ -476,13 +476,15 @@ st.markdown(
     }
 
     .footer {
-    color: var(--muted);
     text-align: center;
-    margin-top: 3rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--line);
-    font-size: 0.85rem;
-    line-height: 1.6;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.footer p {
+    margin: 6px 0;
 }
 
     @media (max-width: 820px) {
@@ -1019,7 +1021,7 @@ st.markdown(
         <strong>QuimIA © 2026</strong><br>
         Plataforma educacional com inteligência artificial.<br><br>
 
-        Desenvolvido por:<br>
+        Desenvolvido por:
         Felipe dos Santos Araújo • Ana Caroline Araújo Duarte da Silva •
         André Holanda Nascimento • Nicanor Tiago Bueno Antunes
     </div>
