@@ -562,7 +562,7 @@ def render_answer(text: str) -> None:
         st.markdown(text)
 
 
-ddef generate_response(prompt: str, spinner_text: str) -> None:
+def generate_response(prompt: str, spinner_text: str) -> None:
 
     client = get_client()
 
