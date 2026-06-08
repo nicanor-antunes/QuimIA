@@ -646,6 +646,7 @@ with st.sidebar:
             "Assistente",
             "Questões ENEM",
             "Recursos",
+            "Sobre o Projeto",
         ],
         label_visibility="collapsed",
     )
@@ -710,7 +711,26 @@ if pagina == "Assistente":
             st.session_state.ultima_pergunta = pergunta.strip()
             generate_response(
                 f"""
-                Você é o QuimIA, um assistente virtual especializado em química.
+                Você é o QuimIA, um tutor virtual especializado em Química para estudantes do Ensino Médio.
+
+Objetivo:
+Auxiliar estudantes a compreender conceitos de Química de forma clara,
+didática e contextualizada.
+
+Regras:
+- Responda sempre em português.
+- Utilize linguagem adequada ao Ensino Médio.
+- Explique passo a passo.
+- Use exemplos do cotidiano.
+- Destaque fórmulas importantes.
+- Relacione o conteúdo ao ENEM quando possível.
+- Evite termos excessivamente técnicos sem explicação.
+- Ao final, apresente um resumo em até 3 tópicos.
+
+Formato:
+1. Explicação
+2. Exemplo prático
+3. Resumo
 
                 Responda para estudantes do ensino médio com:
                 - linguagem simples;
@@ -887,6 +907,63 @@ elif pagina == "Questões ENEM":
 
     render_answer(st.session_state.resposta)
 
+elif pagina == "Sobre o Projeto":
+
+    st.markdown("""
+    <section class="student-header">
+        <div class="eyebrow">Inovação Educacional</div>
+        <h1>Sobre o QuimIA</h1>
+        <p>
+            Plataforma desenvolvida para auxiliar estudantes do Ensino Médio
+            no aprendizado de Química por meio de Inteligência Artificial.
+        </p>
+    </section>
+    """, unsafe_allow_html=True)
+
+    st.markdown("## Problema")
+
+    st.write("""
+    Muitos estudantes apresentam dificuldades na aprendizagem de Química
+    devido à complexidade dos conceitos, linguagem técnica e necessidade
+    de contextualização dos conteúdos.
+    """)
+
+    st.markdown("## Objetivo")
+
+    st.write("""
+    Desenvolver uma plataforma educacional baseada em Inteligência Artificial
+    capaz de fornecer explicações didáticas, questões contextualizadas e
+    apoio ao estudo de Química.
+    """)
+
+    st.markdown("## Tecnologias Utilizadas")
+
+    st.markdown("""
+    - Python
+    - Streamlit
+    - Inteligência Artificial (Groq + Llama)
+    - HTML e CSS
+    - Processamento de Linguagem Natural (PLN)
+    """)
+
+    st.markdown("## Público-Alvo")
+
+    st.write("""
+    Estudantes do Ensino Médio, candidatos ao ENEM e professores que
+    desejam utilizar ferramentas digitais como apoio ao ensino de Química.
+    """)
+
+    st.markdown("## Equipe")
+
+    st.write("""
+    Felipe dos Santos Araújo
+
+    Ana Caroline Araújo Duarte da Silva
+
+    André Holanda Nascimento
+
+    Nicanor Tiago Bueno Antunes
+    """)
 
 else:
     st.markdown(
