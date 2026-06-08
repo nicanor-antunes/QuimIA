@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 import streamlit as st
-from google import genai
+from groq import Groq
 
 
 APP_DIR = Path(__file__).parent
@@ -31,20 +31,17 @@ st.set_page_config(
 )
 
 
-def get_api_key() -> str:
-    """Read the Gemini key from Streamlit secrets or the environment."""
-    try:
-        return st.secrets["GEMINI_API_KEY"]
-    except Exception:
-        return os.getenv("GEMINI_API_KEY", "")
-
-
 @st.cache_resource(show_spinner=False)
-def get_client(api_key: str):
+def get_client():
+    try:
+        api_key = st.secrets["GROQ_API_KEY"]
+    except Exception:
+        api_key = os.getenv("GROQ_API_KEY", "")
+
     if not api_key:
         return None
-    return genai.Client(api_key=api_key)
 
+    return Groq(api_key=api_key)
 
 if "resposta" not in st.session_state:
     st.session_state.resposta = ""
@@ -565,22 +562,33 @@ def render_answer(text: str) -> None:
         st.markdown(text)
 
 
-def generate_response(prompt: str, spinner_text: str) -> None:
-    api_key = get_api_key()
-    client = get_client(api_key)
+ddef generate_response(prompt: str, spinner_text: str) -> None:
+
+    client = get_client()
 
     if client is None:
         st.error(
-            "Configure a chave GEMINI_API_KEY em st.secrets ou nas variáveis de ambiente para usar a IA."
+            "Configure a chave GROQ_API_KEY em st.secrets ou nas variáveis de ambiente."
         )
         return
 
     with st.spinner(spinner_text):
-        response = client.models.generate_content(
-            model="gemini-flash-lite-latest",
-            contents=prompt,
+
+        completion = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0.4,
+            max_tokens=1500,
         )
-        st.session_state.resposta = response.text or "Não consegui gerar uma resposta agora."
+
+        st.session_state.resposta = (
+            completion.choices[0].message.content
+        )
 
 
 def quick_card(icon: str, title: str, description: str) -> None:
