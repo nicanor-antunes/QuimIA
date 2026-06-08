@@ -476,11 +476,14 @@ st.markdown(
     }
 
     .footer {
-        color: var(--muted);
-        text-align: center;
-        margin-top: 2.2rem;
-        font-size: 0.9rem;
-    }
+    color: var(--muted);
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
 
     @media (max-width: 820px) {
         .block-container {
